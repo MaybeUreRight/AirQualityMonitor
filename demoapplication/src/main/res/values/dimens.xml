@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_data_item">60dp</dimen>
+    <dimen name="title_height">54dp</dimen>
+    <dimen name="bottom_height">44dp</dimen>
+    <dimen name="view_margin_10">10dp</dimen>
+    <dimen name="view_padding_10">10dp</dimen>
+    <dimen name="view_padding_5">5dp</dimen>
+    <dimen name="divider_height">0.5dp</dimen>
+</resources>

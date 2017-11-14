@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@android:color/transparent"
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/view_padding_10"
+                android:paddingTop="@dimen/view_padding_10">
+
+    <!--android:background="@color/item_fragment_list_station_name_bg"-->
+    <TextView
+        android:id="@+id/item_fragment_list_station_name"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical|left"
+        android:layout_marginLeft="5dp"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical|left"
+        android:paddingLeft="@dimen/view_padding_10"
+        android:paddingRight="@dimen/view_padding_10"
+        android:text="Column1"
+        android:textColor="@color/white"/>
+    <!--style="@style/content"-->
+    <!--android:background="#bdbdbd"-->
+
+    <lb.demo.view.InterceptScrollContainer
+        android:id="@+id/scroollContainter"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/view_margin_10"
+        android:layout_toRightOf="@id/item_fragment_list_station_name"
+        android:focusable="false">
+
+        <lb.demo.view.MyHScrollView
+            android:id="@+id/horizontalScrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:focusable="false"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_1_name"
+                        style="@style/item_fragment_list_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_1_value"
+                        android:layout_width="@dimen/list_data_item"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/item_fragment_list_station_value_bg"
+                        android:textSize="14sp"/>
+
+                    <!--style="@style/item_fragment_list_value"-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_2_name"
+                        style="@style/item_fragment_list_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_2_value"
+                        android:layout_width="@dimen/list_data_item"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/item_fragment_list_station_value_bg"
+                        android:textSize="14sp"/>
+
+                    <!--style="@style/item_fragment_list_value"-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_3_name"
+                        style="@style/item_fragment_list_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_3_value"
+                        android:layout_width="@dimen/list_data_item"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/item_fragment_list_station_value_bg"
+                        android:textSize="14sp"/>
+
+                    <!--style="@style/item_fragment_list_value"-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_4_name"
+                        style="@style/item_fragment_list_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_4_value"
+                        android:layout_width="@dimen/list_data_item"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/item_fragment_list_station_value_bg"
+                        android:textSize="14sp"/>
+
+                    <!--style="@style/item_fragment_list_value"-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_5_name"
+                        style="@style/item_fragment_list_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_5_value"
+                        android:layout_width="@dimen/list_data_item"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/item_fragment_list_station_value_bg"
+                        android:textSize="14sp"/>
+
+                    <!--style="@style/item_fragment_list_value"-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_6_name"
+                        style="@style/item_fragment_list_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_6_value"
+                        android:layout_width="@dimen/list_data_item"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/item_fragment_list_station_value_bg"
+                        android:textSize="14sp"/>
+
+                    <!--style="@style/item_fragment_list_value"-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_7_name"
+                        style="@style/item_fragment_list_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_7_value"
+                        android:layout_width="@dimen/list_data_item"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/item_fragment_list_station_value_bg"
+                        android:textSize="14sp"/>
+
+                    <!--style="@style/item_fragment_list_value"-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_8_name"
+                        style="@style/item_fragment_list_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_8_value"
+                        android:layout_width="@dimen/list_data_item"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/item_fragment_list_station_value_bg"
+                        android:textSize="14sp"/>
+
+                    <!--style="@style/item_fragment_list_value"-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_9_name"
+                        style="@style/item_fragment_list_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_9_value"
+                        android:layout_width="@dimen/list_data_item"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/item_fragment_list_station_value_bg"
+                        android:textSize="14sp"/>
+
+                    <!--style="@style/item_fragment_list_value"-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_10_name"
+                        style="@style/item_fragment_list_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_10_value"
+                        android:layout_width="@dimen/list_data_item"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/item_fragment_list_station_value_bg"
+                        android:textSize="14sp"/>
+
+                    <!--style="@style/item_fragment_list_value"-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_11_name"
+                        style="@style/item_fragment_list_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_11_value"
+                        android:layout_width="@dimen/list_data_item"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/item_fragment_list_station_value_bg"
+                        android:textSize="14sp"/>
+
+                    <!--style="@style/item_fragment_list_value"-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_12_name"
+                        style="@style/item_fragment_list_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/item_fragment_list_datatype_12_value"
+                        android:layout_width="@dimen/list_data_item"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/item_fragment_list_station_value_bg"
+                        android:textSize="14sp"/>
+
+                    <!--style="@style/item_fragment_list_value"-->
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </lb.demo.view.MyHScrollView>
+    </lb.demo.view.InterceptScrollContainer>
+
+</RelativeLayout>

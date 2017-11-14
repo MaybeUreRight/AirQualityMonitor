@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/item_stationdata_name"
+        style="@style/content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:gravity="left|center_vertical"
+        android:paddingBottom="@dimen/view_padding_5"
+        android:paddingLeft="@dimen/view_padding_10"
+        android:paddingRight="@dimen/view_padding_10"
+        android:paddingTop="@dimen/view_padding_5"/>
+
+    <TextView
+        android:id="@+id/item_stationdata_value"
+        style="@style/content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:background="@drawable/type_2_bg"
+        android:gravity="center"
+        android:paddingBottom="@dimen/view_padding_5"
+        android:paddingLeft="@dimen/view_padding_10"
+        android:paddingRight="@dimen/view_padding_10"
+        android:paddingTop="@dimen/view_padding_5"/>
+
+</LinearLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_listfragment"
+    >
+    <!--android:background="@android:color/white"-->
+
+    <LinearLayout
+        android:id="@+id/ssd_title_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/special">
+
+        <ImageView
+            android:id="@+id/ssd_back"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/view_margin_10"
+            android:src="@drawable/back"
+            />
+
+        <TextView
+            android:id="@+id/ssd_station_name"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/view_margin_10"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/ssd_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:layout_below="@id/ssd_title_container"
+        android:background="@color/type_1"
+        android:backgroundTint="@color/divider"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ssd_bottom_container"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ssd_title_container"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ssd_update_time"
+            style="@style/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/view_padding_10"
+            android:text="数据更新时间："/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/ssd_24hour"
+                style="@style/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/view_margin_10"
+                android:background="@drawable/type_1_bg"
+                android:paddingBottom="@dimen/view_padding_5"
+                android:paddingLeft="@dimen/view_padding_10"
+                android:paddingRight="@dimen/view_padding_10"
+                android:paddingTop="@dimen/view_padding_5"
+                android:text="近24小时检测数据"/>
+
+            <TextView
+                android:id="@+id/ssd_30day"
+                style="@style/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/view_margin_10"
+                android:background="@drawable/type_1_bg"
+                android:paddingBottom="@dimen/view_padding_5"
+                android:paddingLeft="@dimen/view_padding_10"
+                android:paddingRight="@dimen/view_padding_10"
+                android:paddingTop="@dimen/view_padding_5"
+                android:text="近30天检测数据"/>
+        </LinearLayout>
+
+        <GridView
+            android:id="@+id/ssd_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/view_margin_10"
+            android:layout_marginRight="@dimen/view_margin_10"
+            android:layout_marginTop="@dimen/view_margin_10"
+            android:horizontalSpacing="@dimen/view_margin_10"
+            android:numColumns="2"
+            android:scrollbars="none"
+            android:verticalSpacing="@dimen/view_margin_10"/>
+    </LinearLayout>
+
+</RelativeLayout>

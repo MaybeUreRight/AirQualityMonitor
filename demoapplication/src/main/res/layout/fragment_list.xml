@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_listfragment"
+    >
+
+    <LinearLayout
+        android:id="@+id/fragment_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/view_margin_10"
+        android:layout_marginRight="@dimen/view_margin_10"
+        android:layout_marginTop="@dimen/view_margin_10"
+        android:background="@drawable/list_item_bg"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/list_item_1"
+            style="@style/content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/list_item_left_selected_bg"
+            android:gravity="center"
+            android:paddingBottom="@dimen/view_padding_10"
+            android:paddingTop="@dimen/view_padding_10"
+            android:text="实时"/>
+        <!--android:background="@drawable/list_item_1_select_bg"-->
+
+        <TextView
+            android:id="@+id/list_item_2"
+            style="@style/content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/list_item_unselected_bg"
+            android:gravity="center"
+            android:paddingBottom="@dimen/view_padding_10"
+            android:paddingTop="@dimen/view_padding_10"
+            android:text="日报"/>
+
+        <!--android:background="@drawable/list_item_1_unselect_bg"-->
+
+        <TextView
+            android:id="@+id/list_item_3"
+            style="@style/content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/list_item_unselected_bg"
+            android:gravity="center"
+            android:paddingBottom="@dimen/view_padding_10"
+            android:paddingTop="@dimen/view_padding_10"
+            android:text="周报"/>
+
+        <!--android:background="@drawable/list_item_1_unselect_bg"-->
+        <TextView
+            android:id="@+id/list_item_4"
+            style="@style/content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/list_item_unselected_bg"
+            android:gravity="center"
+            android:paddingBottom="@dimen/view_padding_10"
+            android:paddingTop="@dimen/view_padding_10"
+            android:text="月报"/>
+
+        <!--android:background="@drawable/list_item_1_unselect_bg"-->
+        <TextView
+            android:id="@+id/list_item_5"
+            style="@style/content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/list_item_right_unselected_bg"
+            android:gravity="center"
+            android:paddingBottom="@dimen/view_padding_10"
+            android:paddingTop="@dimen/view_padding_10"
+            android:text="年报"/>
+
+        <!--android:background="@drawable/list_item_1_unselect_bg"-->
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/list_update_time"
+        style="@style/content"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_list_item"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/view_margin_10"
+        android:textSize="12sp"
+        android:layout_marginTop="@dimen/view_margin_10"
+        android:gravity="center"
+        android:padding="@dimen/view_padding_10"
+        android:text="更新时间：2017-09-20 9:00"/>
+
+    <!--android:background="@drawable/type_1_bg"-->
+
+    <include
+        android:id="@+id/list_head"
+        layout="@layout/item"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_margin_10"
+        android:layout_below="@id/list_update_time"
+        android:visibility="invisible"/>
+
+    <ListView
+        android:id="@+id/list_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/list_head"
+        android:layout_margin="@dimen/view_margin_10"
+        android:divider="@drawable/line"
+        android:scrollbars="none"/>
+    <View
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@id/list_listview"
+        android:layout_alignLeft="@id/list_listview"
+        android:background="@color/special"
+        />
+</RelativeLayout>

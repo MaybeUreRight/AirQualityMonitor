@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/view_padding_10"
+                android:paddingTop="@dimen/view_padding_10">
+
+    <!--android:background="@color/item_fragment_list_station_name_bg"-->
+    <TextView
+        android:id="@+id/item_fragment_list_station_name"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:gravity="center"
+        android:background="@android:color/transparent"
+        android:paddingLeft="@dimen/view_padding_10"
+        android:paddingRight="@dimen/view_padding_10"
+        android:text="站点"
+        android:textColor="@color/white"/>
+
+    <!--android:background="#8f6a6a6a"-->
+    <!--style="@style/content"-->
+    <!--android:background="#bdbdbd"-->
+
+
+</RelativeLayout>

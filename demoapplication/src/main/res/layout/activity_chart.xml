@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/app">
+
+    <LinearLayout
+        android:id="@+id/chart_title_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/chart_back"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/view_margin_10"
+            android:src="@drawable/back"
+            />
+
+        <TextView
+            android:id="@+id/chart_station_name"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/view_margin_10"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/ssd_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:layout_below="@id/chart_title_container"
+        android:background="@color/type_1"
+        android:backgroundTint="@color/divider"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/chart_title_container"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/chart_update_time"
+            style="@style/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/view_padding_10"
+            android:text="数据更新时间："/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+        <GridView
+            android:scrollbars="none"
+            android:id="@+id/chart_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/view_margin_10"
+            android:numColumns="3"/>
+    </LinearLayout>
+</RelativeLayout>
