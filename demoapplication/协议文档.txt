@@ -3,7 +3,10 @@
 	params = 
 	funcName=getstationlist
 
-	[{"s_code":"00001","s_name":"\u6fee\u4e0a\u56ed"},{"s_code":"00002","s_name":"\u60e0\u6210\u7535\u5b50"}][{"stationData":[{"stationCode":"00001"},{"dateTime":"2017-07-17"},{"datatype":"1","datadevid":"1","maxvalue":"0.30","minvalue":"0.00","avgvalue":"0.14"},{"datatype":"2","datadevid":"1","maxvalue":"354.00","minvalue":"4.00","avgvalue":"179.27"},{"datatype":"6","datadevid":"2","maxvalue":"22.00","minvalue":"22.00","avgvalue":"22.00"},{"datatype":"7","datadevid":"3","maxvalue":"18.00","minvalue":"18.00","avgvalue":"18.00"},{"datatype":"8","datadevid":"4","maxvalue":"3.06","minvalue":"0.01","avgvalue":"0.97"},{"datatype":"9","datadevid":"4","maxvalue":"50.12","minvalue":"27.82","avgvalue":"35.89"},{"datatype":"10","datadevid":"4","maxvalue":"47.91","minvalue":"27.69","avgvalue":"34.92"},{"datatype":"11","datadevid":"6","maxvalue":"13.64","minvalue":"4.52","avgvalue":"8.35"},{"datatype":"12","datadevid":"7","maxvalue":"1.75","minvalue":"1.49","avgvalue":"1.63"},{"datatype":"13","datadevid":"5","maxvalue":"2.59","minvalue":"1.47","avgvalue":"1.96"}]},{"stationData":[{"stationCode":"00002"},{"dateTime":"2017-07-17"}]}]
+	[{"s_code":"00001","s_name":"\u6fee\u4e0a\u56ed"}
+	,{"s_code":"00002","s_name":"\u60e0\u6210\u7535\u5b50"}]
+	[{"stationData":[{"stationCode":"00001"},{"dateTime":"2017-07-17"}
+	,{"datatype":"1","datadevid":"1","maxvalue":"0.30","minvalue":"0.00","avgvalue":"0.14"},{"datatype":"2","datadevid":"1","maxvalue":"354.00","minvalue":"4.00","avgvalue":"179.27"},{"datatype":"6","datadevid":"2","maxvalue":"22.00","minvalue":"22.00","avgvalue":"22.00"},{"datatype":"7","datadevid":"3","maxvalue":"18.00","minvalue":"18.00","avgvalue":"18.00"},{"datatype":"8","datadevid":"4","maxvalue":"3.06","minvalue":"0.01","avgvalue":"0.97"},{"datatype":"9","datadevid":"4","maxvalue":"50.12","minvalue":"27.82","avgvalue":"35.89"},{"datatype":"10","datadevid":"4","maxvalue":"47.91","minvalue":"27.69","avgvalue":"34.92"},{"datatype":"11","datadevid":"6","maxvalue":"13.64","minvalue":"4.52","avgvalue":"8.35"},{"datatype":"12","datadevid":"7","maxvalue":"1.75","minvalue":"1.49","avgvalue":"1.63"},{"datatype":"13","datadevid":"5","maxvalue":"2.59","minvalue":"1.47","avgvalue":"1.96"}]},{"stationData":[{"stationCode":"00002"},{"dateTime":"2017-07-17"}]}]
 
 2,获取站点某天数据
 

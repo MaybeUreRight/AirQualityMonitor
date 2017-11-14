@@ -1,12 +1,10 @@
 package lb.demo.fragment;
 
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +26,6 @@ import lb.demo.adapter.StationDetailAdapter;
 import lb.demo.bean.DayData;
 import lb.demo.location.IntentStr;
 import lb.demo.manager.HttpManager;
-import lb.demo.util.LogUtils;
 import lb.demo.util.VOUtils;
 
 
@@ -65,11 +62,11 @@ public class StationDetailFragment extends Fragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_station_detail, container, false);
-        init(view);
+        initView(view);
         return view;
     }
 
-    private void init(View view) {
+    private void initView(View view) {
         if (mContext == null) {
             mContext = getActivity();
         }
@@ -105,7 +102,8 @@ public class StationDetailFragment extends Fragment implements View.OnClickListe
             dateTime = "2017-08-19";
         }
         ssdUpdateTime.setText(ssdUpdateTime.getText() + dateTime);
-        getDayDataBystationCode(stationCode, dateTime.split(" ")[0]);
+//        getDayDataBystationCode(stationCode, dateTime.split(" ")[0]);
+        getRealTimeData(stationCode);
     }
 
     @Override
@@ -129,7 +127,36 @@ public class StationDetailFragment extends Fragment implements View.OnClickListe
                 );
                 break;
         }
+    }
 
+    private void getRealTimeData(final String stationCode) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String data = HttpManager.getRealTimeData(stationCode);
+                if (mList.size() > 0) {
+                    mList.clear();
+                }
+                ArrayList<String> array = VOUtils.getJsonToArray(data);
+                for (int i = 0; i < array.size(); i++) {
+                    if (i == 0 || i == 1) {
+                        continue;
+                    } else {
+                        String str = array.get(i);
+                        DayData dat = VOUtils.convertString2VO(str, DayData.class);
+                        mList.add(dat);
+                    }
+                }
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    });
+                }
+            }
+        }).start();
     }
 
     private void getDayDataBystationCode(final String stationCode, final String dateTime) {

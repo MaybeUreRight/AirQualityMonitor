@@ -34,7 +34,7 @@ import lb.demo.util.LogUtils;
 
 public class ChartAdapter extends BaseAdapter {
     private Context mContext;
-    private String dataTime;
+//    private String dataTime;
     private LineChart lineChart;
     private LineData lineData;
 
@@ -46,11 +46,11 @@ public class ChartAdapter extends BaseAdapter {
         this.lineData = lineData;
 
         Date date = new Date();
-        dataTime = new SimpleDateFormat("yyyy-MM-dd").format(date);
-        if (DemoApplication.debug) {
-            dataTime = "2017-08-19";
-        }
-        LogUtils.lb("dataTime = " + dataTime);
+//        dataTime = new SimpleDateFormat("yyyy-MM-dd").format(date);
+//        if (DemoApplication.debug) {
+//            dataTime = "2017-08-19";
+//        }
+//        LogUtils.lb("dataTime = " + dataTime);
 
         categoriers = new String[]{"风速"
 //                , "风向",

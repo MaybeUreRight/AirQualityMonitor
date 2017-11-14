@@ -6,6 +6,7 @@ package lb.demo.bean;
 
 public class Hour24Bean extends BaseBean{
     public String time;
+    public String date;
     public int datatype;
     public int datadevid;
     public float maxvalue;

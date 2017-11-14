@@ -62,11 +62,11 @@ public class ChartActivity extends Activity implements View.OnClickListener {
 
     private void init() {
         Date currentDate = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         currentTime = format.format(currentDate);
 //        monthBeforeTime = format.format(new Date(currentDate.getYear(), currentDate.getMonth() - 1, currentDate.getDate()));
 
-        long temp2 = currentDate.getTime() - 1l * 30 * 24 * 60 * 60 * 1000;
+        long temp2 = currentDate.getTime() - 1L * 30 * 24 * 60 * 60 * 1000;
         monthBeforeTime = format.format(new Date(temp2));
 
         LogUtils.lb("currentTime = " + currentTime + "\r\nmonthBeforeTime = " + monthBeforeTime);
@@ -87,7 +87,7 @@ public class ChartActivity extends Activity implements View.OnClickListener {
                 get24HourData();
             } else if (dataCategory.equals(IntentStr.DATA_CATEGORY_30DAY)) {
                 temp += "30天检测数据";
-                get30DayData();
+                get30DayData(monthBeforeTime, currentTime);
             } else {
 
             }
@@ -108,25 +108,29 @@ public class ChartActivity extends Activity implements View.OnClickListener {
         chartGridview.setAdapter(mAdapter);
 
         chartBack.setOnClickListener(this);
-
     }
 
-    private void get30DayData() {
+    private void get30DayData(final String startDate, final String endDate) {
         if (customProgressDialog != null && !customProgressDialog.isShowing()) {
             customProgressDialog.show();
         }
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String data = HttpManager.getSomeDayDataByStationCode(stationCode, "2017-07-17 00:00:00", "2017-08-17 00:00:00");
+                String data = HttpManager.getSomeDayDataByStationCode(stationCode, startDate, endDate);
                 if (!TextUtils.isEmpty(data)) {
                     List<Hour24Bean> list = new ArrayList<>();
                     ArrayList<String> array = VOUtils.getJsonToArray(data);
-                    for (String str : array) {
-                        Hour24Bean hour24Bean = VOUtils.convertString2VO(str, Hour24Bean.class);
-                        list.add(hour24Bean);
+                    for (int i = 0; i < array.size(); i++) {
+                        if (i == 0 || i == 1 || i == 2) {
+                            continue;
+                        } else {
+                            String str = array.get(i);
+                            Hour24Bean hour24Bean = VOUtils.convertString2VO(str, Hour24Bean.class);
+                            list.add(hour24Bean);
+                        }
                     }
-                    showChart(list);
+                    showChart(list, true);
                 } else {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -160,7 +164,7 @@ public class ChartActivity extends Activity implements View.OnClickListener {
                         Hour24Bean hour24Bean = VOUtils.convertString2VO(str, Hour24Bean.class);
                         list.add(hour24Bean);
                     }
-                    showChart(list);
+                    showChart(list, false);
                 } else {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -180,8 +184,9 @@ public class ChartActivity extends Activity implements View.OnClickListener {
      * 将数据显示到折线图中
      *
      * @param list
+     * @param flag true:30天；false:24小时
      */
-    private void showChart(List<Hour24Bean> list) {
+    private void showChart(List<Hour24Bean> list, boolean flag) {
         List<Entry> entries1 = new ArrayList<>();
 //                    List<Entry> entries2= new ArrayList<>();
         List<Entry> entries3 = new ArrayList<>();
@@ -197,49 +202,57 @@ public class ChartActivity extends Activity implements View.OnClickListener {
         List<Entry> entries13 = new ArrayList<>();
         List<Entry> entries14 = new ArrayList<>();
 
-        for (Hour24Bean hour24Bean : list) {
+        for (int i = 0; i < list.size(); i++) {
+            Hour24Bean hour24Bean = list.get(i);
+            String time;
+            if (!flag) {
+                time = hour24Bean.time.substring(12, 14);
+            } else {
+//                time = hour24Bean.date.substring(8);
+                time = "" + i;
+            }
             switch (hour24Bean.datatype) {
                 case 1:
-                    entries1.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
+                    entries1.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
                     break;
-//                            case 2:
-//                            entries2.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
-//                                break;
+//              case 2:
+//                  entries2.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
+//              break;
                 case 3:
-                    entries3.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
+                    entries3.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
                     break;
                 case 4:
-                    entries4.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
+                    entries4.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
                     break;
                 case 5:
-                    entries5.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
+                    entries5.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
                     break;
                 case 6:
-                    entries6.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
+                    entries6.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
                     break;
                 case 7:
-                    entries7.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
+                    entries7.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
                     break;
-//                            case 8:
-//                            entries8.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
-//                                break;
+//              case 8:
+//                  entries8.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
+//              break;
                 case 9:
-                    entries9.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
+                    entries9.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
                     break;
                 case 10:
-                    entries10.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
+                    entries10.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
                     break;
                 case 11:
-                    entries11.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
+                    entries11.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
                     break;
                 case 12:
-                    entries12.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
+                    entries12.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
                     break;
                 case 13:
-                    entries13.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
+                    entries13.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
                     break;
                 case 14:
-                    entries14.add(new Entry(Integer.valueOf(hour24Bean.time.substring(12, 14)), hour24Bean.avgvalue));
+                    entries14.add(new Entry(Integer.valueOf(time), hour24Bean.avgvalue));
                     break;
                 default:
                     break;
@@ -310,7 +323,6 @@ public class ChartActivity extends Activity implements View.OnClickListener {
             LineDataSet dataSet13 = new LineDataSet(entries13, "二氧化硫"); // add entries to dataset
             dataSet13.setColor(getResources().getColor(R.color.line_11));
             lineData.addDataSet(dataSet13);
-
         }
         if (entries14.size() > 0) {
             LineDataSet dataSet14 = new LineDataSet(entries14, "氯化氢"); // add entries to dataset

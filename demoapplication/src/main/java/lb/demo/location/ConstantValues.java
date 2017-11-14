@@ -21,5 +21,6 @@ public class ConstantValues {
     public static final String GET_DAY_CUMU_AVG_DATA = "funcName=getDayCumuAvgData";
     public static final String GET_MONTH_CUMU_AVG_DATA = "funcName=getMonthCumuAvgData";
     public static final String GET_CUMU_AVG_DATA = "funcName=getCumuAvgData";
+    public static final String GET_REAL_TIME_DATA = "funcName=getRealTimeData";
 
 }

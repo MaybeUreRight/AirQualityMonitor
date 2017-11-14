@@ -158,7 +158,6 @@ public class HttpManager {
         String url = ConstantValues.BASE_URL;
         String params = ConstantValues.GET_SOMEDAYDATA_BY_STATIONCODE
                 + ConstantValues.AND + "stationCode=" + stationCode
-
                 + ConstantValues.AND + "startDate=" + startDate
                 + ConstantValues.AND + "endDate=" + endDate;
         String post = post(url, params);
@@ -257,6 +256,20 @@ public class HttpManager {
                 + ConstantValues.AND + "endDate=" + endDate;
         String post = post(url, params);
         LogUtils.lb("getCumuAvgData = \r\n" + post);
+        return post;
+    }
+
+    /**
+     * 获取实时数据（首页轮询查询的时候调用）
+     * @param stationCode
+     * @return
+     */
+    public static String getRealTimeData(String stationCode) {
+        String url = ConstantValues.BASE_URL;
+        String params = ConstantValues.GET_REAL_TIME_DATA
+                + ConstantValues.AND + "stationCode=" + stationCode;
+        String post = post(url, params);
+        LogUtils.lb("getRealTimeData = \r\n" + post);
         return post;
     }
 

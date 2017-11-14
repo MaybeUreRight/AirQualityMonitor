@@ -100,19 +100,24 @@ public class ShowStationListActivity extends Activity {
 
                 for (int i = 0; i < mList.size(); i++) {
                     StationData stationData = mList.get(i);
-                    String dayDataBystationCode = HttpManager.getDayDataBystationCode(stationData.s_code, dataTime);
-                    if (TextUtils.isEmpty(dayDataBystationCode) || dayDataBystationCode.length() <= 1) {
+//                    String dayDataBystationCode = HttpManager.getDayDataBystationCode(stationData.s_code, dataTime);
+                    String getRealTimeData = HttpManager.getRealTimeData(stationData.s_code);
+                    if (TextUtils.isEmpty(getRealTimeData) || getRealTimeData.length() <= 1) {
                         return;
                     }
 
-                    ArrayList<String> jsonToArray = VOUtils.getJsonToArray(dayDataBystationCode);
+                    ArrayList<String> jsonToArray = VOUtils.getJsonToArray(getRealTimeData);
                     ArrayList<DayData> list = new ArrayList<>();
-                    for (String str : jsonToArray) {
-                        DayData data = VOUtils.convertString2VO(str, DayData.class);
-                        list.add(data);
+                    for (int k = 0; k < jsonToArray.size(); k++) {
+                        if (k == 0 || k == 1) {
+                            continue;
+                        } else {
+                            String str = jsonToArray.get(k);
+                            DayData data = VOUtils.convertString2VO(str, DayData.class);
+                            list.add(data);
+                        }
                     }
                     LogUtils.lb("list.size() = " + list.size());
-
 
                     ArrayList<String> titleList = new ArrayList<>();
 //                    String temp = "";
