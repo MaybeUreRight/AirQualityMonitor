@@ -20,7 +20,7 @@ import java.util.List;
 
 import lb.demo.DemoApplication;
 import lb.demo.R;
-import lb.demo.activity.ChartActivity;
+import lb.demo.activity.LineChartActivity;
 import lb.demo.activity.StationDetailActivity;
 import lb.demo.adapter.StationDetailAdapter;
 import lb.demo.bean.DayData;
@@ -113,14 +113,14 @@ public class StationDetailFragment extends Fragment implements View.OnClickListe
                 getActivity().onBackPressed();
                 break;
             case R.id.ssd_24hour:
-                startActivity(new Intent(mContext, ChartActivity.class)
+                startActivity(new Intent(mContext, LineChartActivity.class)
                         .putExtra(IntentStr.S_CODE, stationCode)
                         .putExtra(IntentStr.S_NAME, stationName)
                         .putExtra(IntentStr.DATA_CATEGORY, IntentStr.DATA_CATEGORY_24HOUR)
                 );
                 break;
             case R.id.ssd_30day:
-                startActivity(new Intent(mContext, ChartActivity.class)
+                startActivity(new Intent(mContext, LineChartActivity.class)
                         .putExtra(IntentStr.S_CODE, stationCode)
                         .putExtra(IntentStr.S_NAME, stationName)
                         .putExtra(IntentStr.DATA_CATEGORY, IntentStr.DATA_CATEGORY_30DAY)

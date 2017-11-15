@@ -3,29 +3,12 @@ package lb.demo.fragment;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import lb.demo.DemoApplication;
 import lb.demo.R;
-import lb.demo.activity.ChartActivity;
-import lb.demo.activity.StationDetailActivity;
-import lb.demo.adapter.StationDetailAdapter;
-import lb.demo.bean.DayData;
-import lb.demo.location.IntentStr;
-import lb.demo.manager.HttpManager;
-import lb.demo.util.VOUtils;
 
 
 /**

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/barchart_rootview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#06172e"
+    tools:context="lb.demo.activity.BarChartActivity">
+
+    <RelativeLayout
+        android:id="@+id/bc_title_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@android:color/transparent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="back"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back"
+            />
+
+        <TextView
+            android:id="@+id/bc_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bc_title_container"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/bc_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/white"/>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bc_barchart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="@dimen/view_margin_10"
+            android:background="#102b4b"/>
+
+        <ListView
+            android:id="@+id/barchart_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/view_margin_10"
+            android:divider="#264868"
+            android:dividerHeight="@dimen/divider_height"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"/>
+
+    </LinearLayout>
+</RelativeLayout>

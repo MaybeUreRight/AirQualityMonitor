@@ -1,7 +1,7 @@
 package lb.demo.adapter;
 
 import android.content.Context;
-import android.os.Handler;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,34 +13,30 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
-import java.text.SimpleDateFormat;
+import java.nio.file.attribute.PosixFileAttributes;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
-import lb.demo.DemoApplication;
 import lb.demo.R;
-import lb.demo.activity.ChartActivity;
-import lb.demo.bean.DayData;
-import lb.demo.manager.DataTypeManager;
-import lb.demo.util.LogUtils;
+import lb.demo.activity.BarChartActivity;
+import lb.demo.activity.LineChartActivity;
+import lb.demo.location.IntentStr;
 
 /**
  * Created by liubo on 2017/9/12.
  */
 
-public class ChartAdapter extends BaseAdapter {
+public class LineChartAdapter extends BaseAdapter {
     private Context mContext;
-//    private String dataTime;
+    //    private String dataTime;
     private LineChart lineChart;
     private LineData lineData;
 
     private String[] categoriers;
+    private int[] categoriersIndex;
 
-    public ChartAdapter(Context mContext, LineChart chart, LineData lineData) {
+    public LineChartAdapter(Context mContext, LineChart chart, LineData lineData) {
         this.mContext = mContext;
         this.lineChart = chart;
         this.lineData = lineData;
@@ -59,6 +55,12 @@ public class ChartAdapter extends BaseAdapter {
 //                , "一氧化氮"
                 , "二氧化氮", "氮氧化物", "臭氧", "一氧化碳", "二氧化硫", "氯化氢"
         };
+        categoriersIndex = new int[]{1
+//                , 2
+                , 3, 4, 5
+                , 6, 7,
+//                , 8,
+                9, 10, 11, 12, 13, 14};
     }
 
     @Override
@@ -103,12 +105,19 @@ public class ChartAdapter extends BaseAdapter {
                     }
                 }
 
-                ((ChartActivity) mContext).runOnUiThread(new Runnable() {
+                ((LineChartActivity) mContext).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         lineChart.invalidate();
                     }
                 });
+            }
+        });
+
+        viewHolder.item_chart_textview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((LineChartActivity) mContext).Jump2BarChartActivity(categoriersIndex[i]);
             }
         });
 

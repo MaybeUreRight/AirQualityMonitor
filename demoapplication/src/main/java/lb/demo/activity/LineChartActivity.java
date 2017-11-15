@@ -22,26 +22,28 @@ import java.util.Date;
 import java.util.List;
 
 import lb.demo.R;
-import lb.demo.adapter.ChartAdapter;
+import lb.demo.adapter.LineChartAdapter;
 import lb.demo.bean.Hour24Bean;
 import lb.demo.location.IntentStr;
 import lb.demo.manager.HttpManager;
+import lb.demo.myinterface.Jump2BarChartActivityInterface;
 import lb.demo.util.LogUtils;
 import lb.demo.util.VOUtils;
 import lb.demo.view.CustomProgressDialog;
 
 /**
+ * 折线图界面（24小时/30天监测数据的展示）
  * Created by liubo on 2017/9/28.
  */
 
-public class ChartActivity extends Activity implements View.OnClickListener {
+public class LineChartActivity extends Activity implements View.OnClickListener ,Jump2BarChartActivityInterface{
 
     private ImageView chartBack;
     private TextView chartStationName;
     private TextView chartUpdateTime;
     private LineChart chart;
     private GridView chartGridview;
-    private ChartAdapter mAdapter;
+    private LineChartAdapter mAdapter;
 
     private String stationCode;
     private String stationName;
@@ -52,6 +54,8 @@ public class ChartActivity extends Activity implements View.OnClickListener {
 
     private LineData lineData;
     private CustomProgressDialog customProgressDialog;
+
+    private String data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +88,7 @@ public class ChartActivity extends Activity implements View.OnClickListener {
         if (!TextUtils.isEmpty(dataCategory)) {
             if (dataCategory.equals(IntentStr.DATA_CATEGORY_24HOUR)) {
                 temp += "24小时检测数据";
-                get24HourData();
+                get24HourData(currentTime);
             } else if (dataCategory.equals(IntentStr.DATA_CATEGORY_30DAY)) {
                 temp += "30天检测数据";
                 get30DayData(monthBeforeTime, currentTime);
@@ -104,7 +108,7 @@ public class ChartActivity extends Activity implements View.OnClickListener {
         chartStationName.setText(stationName + temp);
 
         lineData = new LineData();
-        mAdapter = new ChartAdapter(this, chart, lineData);
+        mAdapter = new LineChartAdapter(this, chart, lineData);
         chartGridview.setAdapter(mAdapter);
 
         chartBack.setOnClickListener(this);
@@ -117,7 +121,7 @@ public class ChartActivity extends Activity implements View.OnClickListener {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String data = HttpManager.getSomeDayDataByStationCode(stationCode, startDate, endDate);
+                data = HttpManager.getSomeDayDataByStationCode(stationCode, startDate, endDate);
                 if (!TextUtils.isEmpty(data)) {
                     List<Hour24Bean> list = new ArrayList<>();
                     ArrayList<String> array = VOUtils.getJsonToArray(data);
@@ -138,7 +142,7 @@ public class ChartActivity extends Activity implements View.OnClickListener {
                             if (customProgressDialog != null && customProgressDialog.isShowing()) {
                                 customProgressDialog.dismiss();
                             }
-                            Toast.makeText(ChartActivity.this, "没有数据", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LineChartActivity.this, "没有数据", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -149,14 +153,14 @@ public class ChartActivity extends Activity implements View.OnClickListener {
     /**
      * 获取24小时检测数据
      */
-    private void get24HourData() {
+    private void get24HourData(final String currentTime) {
         if (customProgressDialog != null && !customProgressDialog.isShowing()) {
             customProgressDialog.show();
         }
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String data = HttpManager.get24HourDataByStationCode(stationCode, "2017-08-17");
+                data = HttpManager.get24HourDataByStationCode(stationCode, currentTime);
                 if (!TextUtils.isEmpty(data)) {
                     List<Hour24Bean> list = new ArrayList<>();
                     ArrayList<String> array = VOUtils.getJsonToArray(data);
@@ -172,7 +176,7 @@ public class ChartActivity extends Activity implements View.OnClickListener {
                             if (customProgressDialog != null && customProgressDialog.isShowing()) {
                                 customProgressDialog.dismiss();
                             }
-                            Toast.makeText(ChartActivity.this, "没有数据", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LineChartActivity.this, "没有数据", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -384,5 +388,16 @@ public class ChartActivity extends Activity implements View.OnClickListener {
             }
             return null;
         }
+    }
+
+    @Override
+    public void Jump2BarChartActivity(int index) {
+        startActivity(new Intent(this, BarChartActivity.class)
+                .putExtra(IntentStr.DATA_CATEGORY, dataCategory)
+                .putExtra(IntentStr.DATA_TYPE,index)
+                .putExtra(IntentStr.S_NAME,stationName)
+                .putExtra(IntentStr.ORIGINAL_DATA,data)
+        );
+
     }
 }
