@@ -80,14 +80,14 @@ public class HttpManager {
                 + ConstantValues.AND + "stationCode=" + stationCode
                 + ConstantValues.AND + "dateTime=" + dateTime;
         String post = post(url, params);
-        if (!TextUtils.isEmpty(post)) {
-            String temp = post.substring(post.indexOf("dateTime") + 24);
-            if (!TextUtils.isEmpty(temp)) {
-                post = "[" + temp;
-            } else {
-                post = null;
-            }
-        }
+//        if (!TextUtils.isEmpty(post)) {
+//            String temp = post.substring(post.indexOf("dateTime") + 24);
+//            if (!TextUtils.isEmpty(temp)) {
+//                post = "[" + temp;
+//            } else {
+//                post = null;
+//            }
+//        }
         LogUtils.lb("get24HourDataByStationCode = \r\n" + post);
         return post;
     }

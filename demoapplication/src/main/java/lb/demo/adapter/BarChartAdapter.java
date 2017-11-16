@@ -59,7 +59,7 @@ public class BarChartAdapter extends BaseAdapter {
         }
         if (category) {
             //24小时
-            String[] time = barChartBean.time.split(" ");
+            String[] time = barChartBean.time.split("  ");
             viewHolder.item_barchart_time.setText(time[0] + "\r\n" + time[1]);
         } else {
             //30天

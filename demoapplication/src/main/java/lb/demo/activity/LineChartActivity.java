@@ -36,7 +36,7 @@ import lb.demo.view.CustomProgressDialog;
  * Created by liubo on 2017/9/28.
  */
 
-public class LineChartActivity extends Activity implements View.OnClickListener ,Jump2BarChartActivityInterface{
+public class LineChartActivity extends Activity implements View.OnClickListener, Jump2BarChartActivityInterface {
 
     private ImageView chartBack;
     private TextView chartStationName;
@@ -161,12 +161,18 @@ public class LineChartActivity extends Activity implements View.OnClickListener 
             @Override
             public void run() {
                 data = HttpManager.get24HourDataByStationCode(stationCode, currentTime);
+//                data = HttpManager.get24HourDataByStationCode(stationCode, "2017-11-14 00:00:00");
                 if (!TextUtils.isEmpty(data)) {
                     List<Hour24Bean> list = new ArrayList<>();
                     ArrayList<String> array = VOUtils.getJsonToArray(data);
-                    for (String str : array) {
-                        Hour24Bean hour24Bean = VOUtils.convertString2VO(str, Hour24Bean.class);
-                        list.add(hour24Bean);
+                    for (int i = 0; i < array.size(); i++) {
+                        if (i < 2) {
+                            continue;
+                        } else {
+                            String str = array.get(i);
+                            Hour24Bean hour24Bean = VOUtils.convertString2VO(str, Hour24Bean.class);
+                            list.add(hour24Bean);
+                        }
                     }
                     showChart(list, false);
                 } else {
@@ -394,9 +400,9 @@ public class LineChartActivity extends Activity implements View.OnClickListener 
     public void Jump2BarChartActivity(int index) {
         startActivity(new Intent(this, BarChartActivity.class)
                 .putExtra(IntentStr.DATA_CATEGORY, dataCategory)
-                .putExtra(IntentStr.DATA_TYPE,index)
-                .putExtra(IntentStr.S_NAME,stationName)
-                .putExtra(IntentStr.ORIGINAL_DATA,data)
+                .putExtra(IntentStr.DATA_TYPE, index)
+                .putExtra(IntentStr.S_NAME, stationName)
+                .putExtra(IntentStr.ORIGINAL_DATA, data)
         );
 
     }
