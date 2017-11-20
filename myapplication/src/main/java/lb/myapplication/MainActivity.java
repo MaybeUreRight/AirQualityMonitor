@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        test = findViewById(R.id.test);
+        test = (TextView) findViewById(R.id.test);
         mHead = (RelativeLayout) findViewById(R.id.head);
         mHead.setFocusable(true);
         mHead.setClickable(true);

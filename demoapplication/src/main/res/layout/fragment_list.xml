@@ -90,22 +90,62 @@
         <!--android:background="@drawable/list_item_1_unselect_bg"-->
     </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/list_update_time"
-        style="@style/content"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/list_update_time_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/fragment_list_item"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="@dimen/view_margin_10"
-        android:textSize="12sp"
         android:layout_marginTop="@dimen/view_margin_10"
-        android:gravity="center"
-        android:padding="@dimen/view_padding_10"
-        android:text="更新时间：2017-09-20 9:00"/>
+        android:orientation="horizontal"
+        >
 
+        <TextView
+            android:id="@+id/list_update_time"
+            style="@style/content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/view_margin_10"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:padding="@dimen/view_padding_10"
+            android:text="更新时间：2017-09-20 9:00"
+            android:textColor="@color/white"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/list_end_time"
+            style="@style/content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/view_margin_10"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:padding="@dimen/view_padding_10"
+            android:text="结束日期：2017-09-20"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/list_query"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/view_margin_10"
+            android:layout_weight="0.7"
+            android:background="@drawable/list_query_bg"
+            android:gravity="center"
+            android:paddingBottom="@dimen/view_padding_5"
+            android:paddingLeft="@dimen/view_padding_10"
+            android:paddingRight="@dimen/view_padding_10"
+            android:paddingTop="@dimen/view_padding_5"
+            android:text="查询"
+            android:textSize="12sp"
+            android:visibility="gone"
+            />
+    </LinearLayout>
     <!--android:background="@drawable/type_1_bg"-->
 
     <include
@@ -113,8 +153,10 @@
         layout="@layout/item"
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_margin_10"
-        android:layout_below="@id/list_update_time"
+        android:layout_below="@id/list_update_time_container"
         android:visibility="invisible"/>
+
+    <!--android:background="@drawable/type_1_bg"-->
 
     <ListView
         android:id="@+id/list_listview"
@@ -124,11 +166,12 @@
         android:layout_margin="@dimen/view_margin_10"
         android:divider="@drawable/line"
         android:scrollbars="none"/>
+
     <View
         android:layout_width="80dp"
         android:layout_height="match_parent"
-        android:layout_alignTop="@id/list_listview"
         android:layout_alignLeft="@id/list_listview"
+        android:layout_alignTop="@id/list_listview"
         android:background="@color/special"
         />
 </RelativeLayout>

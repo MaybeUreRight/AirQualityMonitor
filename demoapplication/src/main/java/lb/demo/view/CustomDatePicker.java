@@ -20,9 +20,7 @@ import java.util.Locale;
 
 import lb.demo.R;
 
-/**
- * Created by liuwan on 2016/9/28.
- */
+
 public class CustomDatePicker {
 
     /**
