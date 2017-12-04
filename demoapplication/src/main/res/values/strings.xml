@@ -8,6 +8,8 @@
     <string name="cancle">取消</string>
     <string name="title">请选择时间</string>
     <string name="commit">确定</string>
+    <string name="tip">提示</string>
+    <string name="confirm_pay_for_the_software">是否已结算完毕费用</string>
     <string name="year">年</string>
     <string name="month">月</string>
     <string name="day">日</string>

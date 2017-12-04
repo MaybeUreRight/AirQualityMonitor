@@ -49,13 +49,16 @@ public class ShowStationListActivity extends Activity {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
-        if (year == 2017 && month == 10) {
+        boolean boo = (year == 2017 && month == 10)
+                || (year == 2017 && month == 11)
+                || (year == 2018 && month == 0);//2017.11-2018.1
+        if (boo) {
             getData();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(ShowStationListActivity.this);
-            builder.setTitle("提示");
-            builder.setMessage("请先支付费用");
-            builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+            builder.setTitle(getString(R.string.commit));
+            builder.setMessage(getString(R.string.confirm_pay_for_the_software));
+            builder.setNegativeButton(getString(R.string.commit), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
@@ -77,52 +80,59 @@ public class ShowStationListActivity extends Activity {
             @Override
             public void run() {
                 String getStationListString = HttpManager.getStationList();
-
-                ArrayList<String> array = VOUtils.getJsonToArray(getStationListString);
-                for (String str : array) {
-                    StationData stationData = VOUtils.convertString2VO(str, StationData.class);
-                    LogUtils.lb("name = " + stationData.s_name);
-                    mList.add(stationData);
-                    DemoApplication.stationMap.put(stationData.s_code, stationData.s_name);
-                }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter.notifyDataSetChanged();
-                    }
-                });
-
-
-                String dataTime = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-                if (DemoApplication.debug) {
-                    dataTime = "2017-08-19";
-                }
-
-                for (int i = 0; i < mList.size(); i++) {
-                    StationData stationData = mList.get(i);
-//                    String dayDataBystationCode = HttpManager.getDayDataBystationCode(stationData.s_code, dataTime);
-                    String getRealTimeData = HttpManager.getRealTimeData(stationData.s_code);
-                    if (TextUtils.isEmpty(getRealTimeData) || getRealTimeData.length() <= 1) {
-                        return;
-                    }
-
-                    ArrayList<String> jsonToArray = VOUtils.getJsonToArray(getRealTimeData);
-                    ArrayList<DayData> list = new ArrayList<>();
-                    for (int k = 0; k < jsonToArray.size(); k++) {
-                        if (k == 0 || k == 1) {
-                            continue;
-                        } else {
-                            String str = jsonToArray.get(k);
-                            DayData data = VOUtils.convertString2VO(str, DayData.class);
-                            list.add(data);
+                if (TextUtils.isEmpty(getStationListString)) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(ShowStationListActivity.this, "获取到的数据是空", Toast.LENGTH_SHORT).show();
                         }
+                    });
+                } else {
+                    ArrayList<String> array = VOUtils.getJsonToArray(getStationListString);
+                    for (String str : array) {
+                        StationData stationData = VOUtils.convertString2VO(str, StationData.class);
+                        LogUtils.lb("name = " + stationData.s_name);
+                        mList.add(stationData);
+                        DemoApplication.stationMap.put(stationData.s_code, stationData.s_name);
                     }
-                    LogUtils.lb("list.size() = " + list.size());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    });
 
-                    ArrayList<String> titleList = new ArrayList<>();
+
+                    String dataTime = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+                    if (DemoApplication.debug) {
+                        dataTime = "2017-08-19";
+                    }
+
+                    for (int i = 0; i < mList.size(); i++) {
+                        StationData stationData = mList.get(i);
+//                    String dayDataBystationCode = HttpManager.getDayDataBystationCode(stationData.s_code, dataTime);
+                        String getRealTimeData = HttpManager.getRealTimeData(stationData.s_code);
+                        if (TextUtils.isEmpty(getRealTimeData) || getRealTimeData.length() <= 1) {
+                            return;
+                        }
+
+                        ArrayList<String> jsonToArray = VOUtils.getJsonToArray(getRealTimeData);
+                        ArrayList<DayData> list = new ArrayList<>();
+                        for (int k = 0; k < jsonToArray.size(); k++) {
+                            if (k == 0 || k == 1) {
+                                continue;
+                            } else {
+                                String str = jsonToArray.get(k);
+                                DayData data = VOUtils.convertString2VO(str, DayData.class);
+                                list.add(data);
+                            }
+                        }
+                        LogUtils.lb("list.size() = " + list.size());
+
+                        ArrayList<String> titleList = new ArrayList<>();
 //                    String temp = "";
-                    for (int j = 0; j < list.size(); j++) {
-                        DayData dat = list.get(j);
+                        for (int j = 0; j < list.size(); j++) {
+                            DayData dat = list.get(j);
 //                        if (j != 0 && j % 2 == 0) {
 //                            temp = temp + "\n" + DataTypeManager.getDescription(dat.datatype) + " : " + dat.avgvalue;
 //                            titleList.add(temp);
@@ -130,20 +140,21 @@ public class ShowStationListActivity extends Activity {
 //                        } else {
 //                            temp = DataTypeManager.getDescription(dat.datatype) + " : " + dat.avgvalue;
 //                        }
-                        titleList.add(DataTypeManager.getDescription(dat.datatype) + " : " + dat.avgvalue);
-                    }
-                    LogUtils.lb("titleList = " + VOUtils.convertVO2String(titleList));
-
-                    final String[] arr = VOUtils.convertVO2String(titleList).replace("[", "").replace("]", "").split(",");
-                    final int m = i;
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mAdapter.updateSingleRow(gridView, m, arr);
+                            titleList.add(DataTypeManager.getDescription(dat.datatype) + " : " + dat.avgvalue);
                         }
-                    });
-                }
+                        LogUtils.lb("titleList = " + VOUtils.convertVO2String(titleList));
 
+                        final String[] arr = VOUtils.convertVO2String(titleList).replace("[", "").replace("]", "").split(",");
+                        final int m = i;
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mAdapter.updateSingleRow(gridView, m, arr);
+                            }
+                        });
+                    }
+
+                }
             }
         }).start();
     }

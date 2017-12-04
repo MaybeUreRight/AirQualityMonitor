@@ -137,23 +137,27 @@ public class StationDetailFragment extends Fragment implements View.OnClickListe
                 if (mList.size() > 0) {
                     mList.clear();
                 }
-                ArrayList<String> array = VOUtils.getJsonToArray(data);
-                for (int i = 0; i < array.size(); i++) {
-                    if (i == 0 || i == 1) {
-                        continue;
-                    } else {
-                        String str = array.get(i);
-                        DayData dat = VOUtils.convertString2VO(str, DayData.class);
-                        mList.add(dat);
-                    }
-                }
-                if (getActivity() != null) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mAdapter.notifyDataSetChanged();
+                if (TextUtils.isEmpty(data)) {
+
+                } else {
+                    ArrayList<String> array = VOUtils.getJsonToArray(data);
+                    for (int i = 0; i < array.size(); i++) {
+                        if (i == 0 || i == 1) {
+                            continue;
+                        } else {
+                            String str = array.get(i);
+                            DayData dat = VOUtils.convertString2VO(str, DayData.class);
+                            mList.add(dat);
                         }
-                    });
+                    }
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mAdapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
                 }
             }
         }).start();
@@ -167,18 +171,22 @@ public class StationDetailFragment extends Fragment implements View.OnClickListe
                 if (mList.size() > 0) {
                     mList.clear();
                 }
-                ArrayList<String> array = VOUtils.getJsonToArray(data);
-                for (String str : array) {
-                    DayData dat = VOUtils.convertString2VO(str, DayData.class);
-                    mList.add(dat);
-                }
-                if (getActivity() != null) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mAdapter.notifyDataSetChanged();
-                        }
-                    });
+                if (TextUtils.isEmpty(data)) {
+
+                } else {
+                    ArrayList<String> array = VOUtils.getJsonToArray(data);
+                    for (String str : array) {
+                        DayData dat = VOUtils.convertString2VO(str, DayData.class);
+                        mList.add(dat);
+                    }
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mAdapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
                 }
             }
         }).start();
